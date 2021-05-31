@@ -590,7 +590,7 @@ label {
 }
 
 .fa-github:hover {
-  color: #3ee6e1;
+  color: #98ded9;
 }
 
 .diagram {
@@ -677,11 +677,11 @@ ul.team-member-icons li {
 
 .team-member-icon {
   margin: 0px 5px;
-  color: #00f2b1;
+  color: #161d6f;
 }
 
 .team-member-icon:hover {
-  color: #3ee6e1;
+  color: #98ded9;
 }
 
 body {
@@ -779,7 +779,7 @@ a {
 }
 
 a:hover {
-  color: #3ee6e1;
+  color: #98ded9;
 }
 
 .section {
@@ -869,7 +869,7 @@ a:hover {
   -ms-flex-align: center;
   align-items: center;
   border-radius: 25px;
-  background-image: linear-gradient(111deg, #00f2b1, #3ee6e1);
+  background-image: linear-gradient(111deg, #161d6f, #98ded9);
 }
 
 .black-h2 {
@@ -1326,7 +1326,7 @@ a:hover {
 }
 
 .link-block:hover {
-  color: #3ee6e1;
+  color: #98ded9;
 }
 
 .navigation-container {
