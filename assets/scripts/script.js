@@ -1,4 +1,4 @@
-const words = ["centralizing","encrypting", "managing", "protecting"];
+const words = ["collecting","transforming", "transporting", "centralizing", "storing", "exploring"];
 let i = 0;
 
 const _changeText = () => {
