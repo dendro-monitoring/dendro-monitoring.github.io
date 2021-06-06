@@ -747,8 +747,246 @@
 
 
         <!-- Section 6 -->
-        <h2 class="h2">6. Installing and Using Dendro</h2>
+        <h2 class="h2">6 Installing and Using Dendro</h2>
+        <h3>6.1 Installing Dendro</h3>
+        <!-- TODO: 5-steps-to-install.png -->
+        <p>
+          Dendro is an npm package, which means the first step is to download and install it just like any other npm
+          package. Make sure to use the -g flag so that the command is available throughout your local environment
+        </p>
+        <br />
+        <p>
+          The second step is to install the data collecting agent, Vector, on the local machine. Dendro provides a
+          command which helps the user to install Vector given their particular package manager.
+        </p>
+        <br />
+        <p>
+          The third step is to configure Dendro for that server using the dendro configure command. This step results in
+          two configuration files: 1. a file that Vector uses to monitor the selected services on that machine, 2. A
+          file that Dendro uses to deploy the pipeline, including AWS credentials and database tables that match the
+          selected services for that server.
+        </p>
+        <br />
+        <!-- TODO: dendro-configure.gif -->
+        <p>
+          Dendro now knows which services you want to monitor on your machine. The fourth step is to actually build the
+          pipeline by running the command `dendro deploy`. Again, the pipeline provides a centralized location where all
+          of the monitoring data from our various servers will live.
+        </p>
+        <br />
+        <!-- TODO: dendro-deploy.gif -->
+        <p>
+          Running the dendro deploy command sets up the AWS infrastructure, including the IAM role, the Kinesis Firehose
+          stream, the S3 bucket, the Lambda function, and the Timestream database with the correct tables.
+        </p>
+        <br />
+        <p>
+          It asks if the user’s AWS credentials have the appropriate permissions, providing a link where they can
+          confirm that they do, then it asks if they want to set up alerting, which will send them an email under
+          specific failure conditions.
+        </p>
+        <br />
+        <!-- dendro-teardown.gif -->
+        <p>
+          We can run the teardown command to remove all deployed AWS services. It will ask us to confirm that the user
+          wants to delete the resources. The teardown command is for ease of use and to ensure that there are no extra
+          AWS services floating around in the user’s account.
+        </p>
+        <br />
+        <!-- TODO: vector-run.gif -->
+        <p>
+          Now that the pipeline is set up, we’re ready to send data to it. We’ll do this by running vector.
+        </p>
+        <br />
+        <p>
+          <!-- TODO: stylize code -->
+          We start Vector by running the command <code>vector --config vector-config.toml</code>, passing in the
+          configuration file generated from the configure command. This file ensures that we’re monitoring the
+          appropriate services on this machine. Vector is now streaming logs and metrics to the AWS pipeline.
+        </p>
+        <br />
 
+        <h3>6.2 Using Dendro</h3>
+        <!-- TODO: frontend-home.gif -->
+        <p>
+          Now that we have data passing through to the database, we can visit the frontend, which is accessed by running
+          the command dendro start:server from any computer that has dendro installed and configured, and then visiting
+          localhost port 3000 on a browser.
+        </p>
+        <br />
+        <p>
+          There are three pages listed on the sidebar. A homepage, a charts page, and a query page. On the homepage, the
+          user can see what services are being monitored and check that the pipeline is successfully writing records to
+          the database.
+        </p>
+        <br />
+        <!-- frontend-charts.gif -->
+        <p>
+          <!-- TODO: link -->
+          On the charts page, we see real-time data for the services currently being monitored. This includes key
+          metrics from the RED method,
+          [https://grafana.com/blog/2018/08/02/the-red-method-how-to-instrument-your-services/]
+          such as the rate of requests, the number of errors among those requests, and the duration of the requests.
+        </p>
+        <br />
+        <!-- TODO: frontend-query.gif -->
+        <p>
+          The query page enables us to query the Timestream database. In this example, we query the nginx access logs
+          for all 500 errors that occurred in the last 2 hours. A user can also export the data and begin to drill down
+          to find the source of the problem.
+        </p>
+        <br />
+
+
+        <!-- Section 7 -->
+        <h2 class="h2">7 Implementation Challenges</h2>
+        <p>
+          We had to overcome 3 major technical challenges while building Dendro.
+
+          <!-- TODO: Bullet points -->
+          AWS: the optimistic Response object
+          Real-time data transformations
+          What does Dendro visualize?
+        </p>
+        <br />
+
+        <h3>7.1 AWS: the optimistic Response object</h3>
+        <p>
+          One major challenge the team faced while building the <code>deploy</code> and <code>teardown</code> commands
+          was related to spinning up or destroying AWS services that depend on the existence of another service in order
+          to successfully deploy or that cannot be destroyed while another service depends on it. <code>deploy</code>
+          fires off 37 API calls, while <code>teardown</code> executes 25.
+        </p>
+        <br />
+        <!-- TODO: api-calls.png -->
+        <p>
+          For example, certain services couldn’t be spun up before the requisite IAM permissions were created or
+          attached, or Timestream tables couldn’t be created until the database was successfully created.
+        </p>
+        <br />
+        <p>
+          When an HTTP request is dependent on a successful response to a previous one, you expect to be able to make
+          the first request, wait to receive the response, and only then send the second request.
+        </p>
+        <br />
+        <!-- TODO: optimistic-response.png -->
+        <p>
+          When using the AWS SDK, AWS returns an AWS Response object that doesn’t necessarily indicate that the service
+          has been created! So when you predicate the next step on the receipt of the Response object and send the
+          subsequent request, it often fails.
+        </p>
+        <br />
+        <!-- TODO: long-polling.gif -->
+        <p>
+          To overcome this, we implemented long polling AWS with exponential back off. Dendro asks Amazon repeatedly
+          whether the operation has been completed, increasing the time between failed polls at an exponential rate in
+          order to avoid overwhelming the server or hitting a rate limit. Once the AWS Response object returns a state
+          that is not <span class="bold">LOADING</span>, Dendro can then react to that state change accordingly.
+        </p>
+        <br />
+
+        <h3>7.2 Transforming data in real-time</h3>
+        <p>
+          How does Dendro take raw, plain-text logs and prepare them for insertion to a time-series database? To achieve
+          this, the team had to build in two separate data transformation steps throughout the pipeline. The first
+          happens at the point of collection, while the second happens in the Lambda function triggered by Kinesis Data
+          Firehose writing to the S3 bucket. We have already discussed how both work but to reiterate:
+        </p>
+        <br />
+        <!-- TODO: apache-log.png -->]
+        <p>
+          Logs are typically emitted as plain-text. During the log collection process, Dendro takes some steps to
+          prepare it for insertion into the database. It first has to parse the record using a regex pattern written
+          specifically to match this particular log format. Parsing that plain-text log with such a regex pattern gives
+          us a structured JSON object. Dendro then injects a `type` key into the JSON object to note the record source
+          and transport it off the host server.
+        </p>
+        <br />
+        <p>
+          The second data transformation happens in the Lambda function where Dendro takes an octet-stream, parses it,
+          and then writes to the database.
+        </p>
+        <br />
+        <p>
+          Part of the appeal of the Kinesis Data Firehose is that it can accept data from any source: JSON, XML and
+          numerous other formats. Firehose just accepts that data without checking or enforcing its validity.
+          Unfortunately, the easiest way to accept any data is to convert it to binary and keep appending it to a binary
+          blob. This is exactly what Firehose does and where it converts the JSON Dendro built while collecting records
+          into an octet-stream.
+        </p>
+        <br />
+        <p>
+          We first start by converting the binary data into a string. This looks similar to an array of JSON records but
+          is missing a few tokens (brackets, commas, etc.) making it unparsable/invalid JSON.
+        </p>
+        <br />
+        <!-- TODO: binary-to-json.gif -->
+        <p>
+          We can use regex to insert those missing tokens and then successfully parse the octet-stream back into JSON.
+          Once the record is parsable, Dendro checks that the <code>type</code> key that was injected during the first
+          data transformation phase. This key helps us identify the source of the record, what data to pluck out and
+          store and what table within Timestream to insert it in.
+        </p>
+        <br />
+
+        <h3>7.3 What to Visualize</h3>
+        <p>
+          When Naptime’s servers are down and they view the Dendro dashboard, what are the key metrics they need to see
+          in order to resolve their outage? The challenge here wasn’t in writing SQL queries, but actually taking a step
+          back and deciding how to represent what Dendro tracks and measures visually.
+        </p>
+        <br />
+        <p>
+          There are some main schools of thought on what metrics matter most for monitoring, named things like “The Four
+          Golden Signals”, “USE”, and the “RED Method”. Tom Wilkie, a former site reliability engineer (SRE) at Google,
+          created the microservice-oriented monitoring philosophy called RED. It focuses on rate, errors & duration, and
+          the team found that it had the right balance of simplicity and specificity for our use-case, as well as that
+          it was particularly well suited to time-series data.
+
+          <!-- TODO: bullet points -->
+          <span class="bold">“Rate”</span> refers to the number of requests per second a service is receiving.
+          <span class="bold">“Errors”</span> is the number of the requests that receive an error response from the
+          service.
+          <span class="bold">“Duration”</span> is the length of time the service takes to complete a response to a
+          request.
+        </p>
+        <br />
+        <p>
+          We found that RED matched our use case nicely, perhaps due to the fact that microservice architectures are
+          typically distributed systems.
+        </p>
+        <br />
+        <p>
+          Tom Wilkie has written that “understanding the error rate, the request rate, and then some distribution of
+          latency gives you a nice, consistent view of how your architecture is behaving.” That’s exactly what we wanted
+          Dendro to provide: a consistent view of how your architecture is behaving over time.
+        </p>
+        <br />
+
+
+        <!-- Section 8 -->
+        <h2 class="h2">8 Future Work</h2>
+        <p>
+          Of course, an open source project is never fully finished. While we think Dendro is currently
+          feature-complete, ready for people to use and immediately benefit from, there are certain future work items
+          that would strengthen the overall framework.
+        </p>
+        <br />
+        <ul>
+          <li>
+            We would like to provide our users the ability to inject more and more varied custom transforms into the
+            pipeline. It’s possible as of now if they go and edit the configuration files, but that’s manual and Dendro
+            is all about reducing toil.
+          </li>
+          <li>
+            We’d also like to provide built-in support for MySQL, which Vector does not currently support as a native
+            source but which they do plan to build as part of a future milestone.
+          </li>
+          <li>
+            And finally, on the dashboard, we would like to provide syntax highlighting for SQL queries as well as more
+            out of the box graphs and visualizations.
+          </li>
+        </ul>
 
 
 
