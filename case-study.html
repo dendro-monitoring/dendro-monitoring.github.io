@@ -108,7 +108,6 @@
         <br />
 
         <h3>1.2 NapTime: An Example User Story</h3>
-        <!-- TODO: naptime-early.png -->
         <p>
           NapTime has two engineers, and they recently completed the beta build of their sleep monitoring app.
         </p>
@@ -116,6 +115,7 @@
         <p>
           Their system itself has proven to be resilient so far, thanks to its small size and simplicity.
         </p>
+        <img src="assets/images/case-study/naptime-early.png" class="case-study-image" />
         <br />
         <p>
           NapTime built a simple three-tier system in order to avoid premature optimization, with their web server and
@@ -136,14 +136,14 @@
           trying to access their homepages but they’re just receiving a 500-level error.
         </p>
         <br />
-        <!-- TODO: debugging-small.gif -->
+        <img src="assets/images/case-study/debugging-small.gif" class="case-study-image" />
         <p>
           The engineers decide on three priority debugging steps: ensure that each server in their system is up, ensure
           that each of the services running on those servers is up, and check whether those services are sending and
           receiving requests and responses successfully.
         </p>
         <br />
-        <!-- TODO: debugging-steps.gif -->
+        <img src="assets/images/case-study/debugging-steps.gif" class="case-study-image" />
         <p>
           First, if they have a list of their static IP addresses, they can use the Unix command line utility `ping` to
           check whether each of the servers is up at all. If the servers are up, it’ll be useful to see their health
@@ -167,7 +167,7 @@
           can provide the answers to these questions.
         </p>
         <br />
-        <!-- TODO: logs-historical.png -->
+        <img src="assets/images/case-study/logs-historical.png" class="case-study-image" />
         <p>
           Let’s say that the NapTime team is curious about what’s going on with their Nginx web server. One of their
           next steps would be to take a look at the access log file in the nginx subdirectory of var/log.
@@ -180,7 +180,7 @@
           errors occurring, exploring the access log of their web server is where NapTime would find evidence of them.
         </p>
         <br />
-        <!-- TODO: log-breakdown.png -->
+        <img src="assets/images/case-study/log-breakdown.png" class="case-study-image" />
         <p>
           The individual log lines NapTime would find would look something like the above diagram. An interested
           engineer can take logs like these and analyze them, either one by one or aggregated, in order to achieve a
@@ -206,7 +206,7 @@
           a new central location.
         </p>
         <br />
-        <!-- TODO: naptime-scaled.png -->
+        <img src="assets/images/case-study/naptime-scaled.png" class="case-study-image" />
         <p>
           Suddenly NapTime is in charge of 8 nodes instead of 2, scaled out app servers, more unique services, a load
           balancer, and multiple databases. What is debugging like for them now? What if MongoDB suddenly stops
@@ -224,11 +224,11 @@
           software engineering is automating the toil out of processes.
         </p>
         <br />
-        <!-- TODO: tail.gif -->
+        <img src="assets/images/case-study/tail.gif" class="case-study-image" />
         <p>
           On Unix-like systems, a common strategy to gain a quick insight into what’s happening with a service is to run
           the command `tail -f` on the log file to which that service writes. Tail prints the last 10 lines of a given
-          file to STDOUT, and the “-f” flag indicates that the program should continue to “follow”, streaming new lines
+          file to STDOUT, and the `-f` flag indicates that the program should continue to “follow”, streaming new lines
           to STDOUT as they are written to the file.
         </p>
         <br />
@@ -278,10 +278,10 @@
           you don’t prematurely forfeit the benefits that logs and metrics provide.
         </p>
         <br />
-        <!-- TODO: single-source.gif -->
         <p>
           Dendro acts as that strategy.
         </p>
+        <img src="assets/images/case-study/single-source.gif" class="case-study-image" />
         <br />
         <p>
           A team can SSH into each of the nodes in their system, configure and deploy a logging pipeline using Dendro’s
@@ -321,7 +321,7 @@
           the example of NapTime after they’ve scaled their architecture.
         </p>
         <br />
-        <!-- TODO: dendro-agent.gif -->
+        <img src="assets/images/case-study/dendro-agent.gif" class="case-study-image" />
         <p>
           Dendro includes a collection agent that the team installs on each node in their system. That collection agent
           gathers log and metric data from both the services running on the server, as well as information about the
@@ -335,11 +335,11 @@
         <br />
 
         <h3>2.2 What’s in Dendro?</h3>
-        <!-- TODO: dendro-architecture.gif -->
         <p>
           This is an overview of Dendro’s architecture and the infrastructure behind this framework. We’ll dive into it
           in more detail later, but for now let’s stick to the main conceptual pieces.
         </p>
+        <img src="assets/images/case-study/dendro-architecture.gif" class="case-study-image" />
         <br />
         <p>
           We’ve already discussed how Dendro helps you set up the automated collection of logs and metrics from your
@@ -386,7 +386,7 @@
           build.
         </p>
         <br />
-        <!-- TODO: buy0operate-build.gif -->
+        <img src="assets/images/case-study/buy-operate-build.gif" class="case-study-image" />
         <p>
           If a small company like NapTime was to <span class="bold">buy</span> a solution, they might look at working
           with a SaaS vendor like Datadog. Outsourcing your monitoring to a vendor makes the whole process very easy and
@@ -412,7 +412,7 @@
           But what if there were another option? That’s where we think Dendro fits in.
         </p>
         <br />
-        <!-- TODO: dendro-comparison.png -->
+        <img src="assets/images/case-study/dendro-comparison.png" class="case-study-image" />
         <p>
           Dendro combines the <span class="bold">ease of deployment</span> and <span class="bold">low maintenance</span>
           of a SaaS solution thanks to its collection agents and fully-serverless pipeline.
@@ -486,7 +486,7 @@
           functionality.
         </p>
         <br />
-        <!-- TODO: api-calls.png -->
+        <img src="assets/images/case-study/api-calls.png" class="case-study-image" />
         <h5>Low maintenance</h5>
         <p>
           Provisioning and maintaining servers takes time and can be difficult. And even under close observation, they
@@ -507,7 +507,7 @@
           is indistinguishable from normal relational data that features a timestamp as a field.
         </p>
         <br />
-        <!-- TODO: timestream-schema.png -->
+        <img src="assets/images/case-study/timestream-schema.png" class="case-study-image" />
         <p>
           With that in mind, log data is perfectly suited to being treated as time-series data. For example, time series
           data could measure the average response time of a web server over the course of a week. The distinction
@@ -544,26 +544,26 @@
           Getting insights into distributed systems is cumbersome.
         </p>
         <br />
-        <!-- TODO: connections.png -->
         <p>
           For example, think back to NapTime’s scaled architecture. Their system includes 8 different nodes and 16
           different network connections that could fail. If some error occurs, where did it happen? What node failed?
           What logs do they check? Without log aggregation and centralization, NapTime would have to check each node
           individually.
         </p>
+        <img src="assets/images/case-study/connections.png" class="case-study-image" />
         <br />
         <p>
           Dendro aims to decrease the time between an outage occurring and the time it takes for you to resolve it. We
           don’t want your outages to be a murder mystery. And we don’t want you or your team being reactive.
         </p>
         <br />
-        <!-- proactive.png -->
         <p>
           Instead, we want you to be proactive. Dendro not only helps you catch issues early, but also informs you in
           real-time precisely what’s broken, helping you pinpoint exactly what went wrong and on which node. Dendro does
           so by monitoring incoming logs and metrics to notify users of failures, thereby decreasing the time it takes
           for your team to become aware of a problem.
         </p>
+        <img src="assets/images/case-study/proactive.png" class="case-study-image" />
         <br />
         <p>
           With Dendro, NapTime’s engineer’s no longer need to check 8 different nodes. By aggregating logs into a single
@@ -858,7 +858,7 @@
           fires off 37 API calls, while <code>teardown</code> executes 25.
         </p>
         <br />
-        <!-- TODO: api-calls.png -->
+        <img src="assets/images/case-study/api-calls.png" class="case-study-image" />
         <p>
           For example, certain services couldn’t be spun up before the requisite IAM permissions were created or
           attached, or Timestream tables couldn’t be created until the database was successfully created.
@@ -869,14 +869,14 @@
           the first request, wait to receive the response, and only then send the second request.
         </p>
         <br />
-        <!-- TODO: optimistic-response.png -->
+        <img src="assets/images/case-study/optimistic-response.png" class="case-study-image" />
         <p>
           When using the AWS SDK, AWS returns an AWS Response object that doesn’t necessarily indicate that the service
           has been created! So when you predicate the next step on the receipt of the Response object and send the
           subsequent request, it often fails.
         </p>
         <br />
-        <!-- TODO: long-polling.gif -->
+        <img src="assets/images/case-study/long-polling.gif" class="case-study-image" />
         <p>
           To overcome this, we implemented long polling AWS with exponential back off. Dendro asks Amazon repeatedly
           whether the operation has been completed, increasing the time between failed polls at an exponential rate in
@@ -893,7 +893,7 @@
           Firehose writing to the S3 bucket. We have already discussed how both work but to reiterate:
         </p>
         <br />
-        <!-- TODO: apache-log.png -->]
+        <img src="assets/images/case-study/apache-log.png" class="case-study-image" />
         <p>
           Logs are typically emitted as plain-text. During the log collection process, Dendro takes some steps to
           prepare it for insertion into the database. It first has to parse the record using a regex pattern written
@@ -920,7 +920,7 @@
           is missing a few tokens (brackets, commas, etc.) making it unparsable/invalid JSON.
         </p>
         <br />
-        <!-- TODO: binary-to-json.gif -->
+        <img src="assets/images/case-study/binary-to-json.gif" class="case-study-image" />
         <p>
           We can use regex to insert those missing tokens and then successfully parse the octet-stream back into JSON.
           Once the record is parsable, Dendro checks that the <code>type</code> key that was injected during the first
