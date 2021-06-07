@@ -297,12 +297,9 @@ label {
 }
 
 .case-study-image {
-  margin-top: 40px;
-  margin-bottom: 40px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 40px auto;
   display: block;
-  width: 60%;
+  width: 70%;
 }
 
 .large-image {
@@ -319,11 +316,21 @@ label {
   .w-container {
     max-width: none;
   }
+
+  .case-study-image {
+    width: 100%;
+    margin: 0px auto;
+  }
 }
 
 @media screen and (max-width: 767px) {
   .w-nav-brand {
     padding-left: 10px;
+  }
+
+  .case-study-image {
+    width: 80%;
+    margin: 0px auto;
   }
 }
 
