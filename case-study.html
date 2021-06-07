@@ -909,26 +909,24 @@
           selected services for that server.
         </p>
         <br />
-        <!-- TODO: dendro-configure.gif -->
-        <!-- <br />
+        <br />
         <figure>
           <img src="assets/images/case-study/dendro-configure.gif" class="case-study-image" />
-          <figcaption>Fig. 30: CAPTION</figcaption>
+          <figcaption>Fig. 30: Dendro Configure</figcaption>
         </figure>
-        <br /> -->
+        <br />
         <p>
           Dendro now knows which services you want to monitor on your machine. The fourth step is to actually build the
           pipeline by running the command `dendro deploy`. Again, the pipeline provides a centralized location where all
           of the monitoring data from our various servers will live.
         </p>
         <br />
-        <!-- TODO: dendro-deploy.gif -->
-        <!-- <br />
+        <br />
         <figure>
           <img src="assets/images/case-study/dendro-deploy.gif" class="case-study-image" />
-          <figcaption>Fig. 31: CAPTION</figcaption>
+          <figcaption>Fig. 31: Dendro Deploy</figcaption>
         </figure>
-        <br /> -->
+        <br />
         <p>
           Running the dendro deploy command sets up the AWS infrastructure, including the IAM role, the Kinesis Firehose
           stream, the S3 bucket, the Lambda function, and the Timestream database with the correct tables.
@@ -940,26 +938,24 @@
           specific failure conditions.
         </p>
         <br />
-        <!-- TODO: dendro-teardown.gif -->
-        <!-- <br />
+        <br />
         <figure>
           <img src="assets/images/case-study/dendro-teardown.gif" class="case-study-image" />
-          <figcaption>Fig. 32: CAPTION</figcaption>
+          <figcaption>Fig. 32: Dendro Teardown</figcaption>
         </figure>
-        <br /> -->
+        <br />
         <p>
           We can run the teardown command to remove all deployed AWS services. It will ask us to confirm that the user
           wants to delete the resources. The teardown command is for ease of use and to ensure that there are no extra
           AWS services floating around in the user’s account.
         </p>
         <br />
-        <!-- TODO: vector-run.gif -->
-        <!-- <br />
+        <br />
         <figure>
           <img src="assets/images/case-study/vector-run.gif" class="case-study-image" />
-          <figcaption>Fig. 33: CAPTION</figcaption>
+          <figcaption>Fig. 33: Running Vector</figcaption>
         </figure>
-        <br /> -->
+        <br />
         <p>
           Now that the pipeline is set up, we’re ready to send data to it. We’ll do this by running vector.
         </p>
@@ -973,18 +969,18 @@
         <br />
 
         <h3>6.2 Using Dendro</h3>
-        <!-- TODO: frontend-home.gif -->
-        <!-- <br />
-        <figure>
-          <img src="assets/images/case-study/frontend-home.gif" class="case-study-image" />
-          <figcaption>Fig. 34: CAPTION</figcaption>
-        </figure>
-        <br /> -->
+        
+        <br />
         <p>
           Now that we have data passing through to the database, we can visit the frontend, which is accessed by running
           the command dendro start:server from any computer that has dendro installed and configured, and then visiting
           localhost port 3000 on a browser.
         </p>
+        <br />
+        <figure>
+          <img src="assets/images/case-study/frontend-home.gif" class="case-study-image" />
+          <figcaption>Fig. 34: Frontend Home</figcaption>
+        </figure>
         <br />
         <p>
           There are three pages listed on the sidebar. A homepage, a charts page, and a query page. On the homepage, the
@@ -992,28 +988,23 @@
           the database.
         </p>
         <br />
-        <!-- TODO: frontend-charts.gif -->
-        <!-- <br />
+        <br />
         <figure>
           <img src="assets/images/case-study/frontend-charts.gif" class="case-study-image" />
-          <figcaption>Fig. 35: CAPTION</figcaption>
+          <figcaption>Fig. 35: Frontend Charts</figcaption>
         </figure>
-        <br /> -->
+        <br />
         <p>
-          <!-- TODO: link -->
           On the charts page, we see real-time data for the services currently being monitored. This includes key
-          metrics from the RED method,
-          [https://grafana.com/blog/2018/08/02/the-red-method-how-to-instrument-your-services/]
-          such as the rate of requests, the number of errors among those requests, and the duration of the requests.
+          metrics from the <a href="https://grafana.com/blog/2018/08/02/the-red-method-how-to-instrument-your-services/" target="_blank">RED method</a>, such as the rate of requests, the number of errors among those requests, and the duration of the requests.
         </p>
         <br />
-        <!-- TODO: frontend-query.gif -->
-        <!-- <br />
+        <br />
         <figure>
           <img src="assets/images/case-study/frontend-query.gif" class="case-study-image" />
-          <figcaption>Fig. 36: CAPTION</figcaption>
+          <figcaption>Fig. 36: Frontend Query</figcaption>
         </figure>
-        <br /> -->
+        <br />
         <p>
           The query page enables us to query the Timestream database. In this example, we query the nginx access logs
           for all 500 errors that occurred in the last 2 hours. A user can also export the data and begin to drill down
