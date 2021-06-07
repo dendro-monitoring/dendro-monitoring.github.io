@@ -885,16 +885,15 @@
         <!-- Section 6 -->
         <h2 class="h2">6 Installing and Using Dendro</h2>
         <h3>6.1 Installing Dendro</h3>
-        <!-- TODO: 5-steps-to-install.png -->
-        <!-- <br />
+        <br />
         <figure>
-          <img src="assets/images/case-study/5-steps-to-install.png" class="case-study-image" />
-          <figcaption>Fig. 29: CAPTION</figcaption>
+          <img src="assets/images/case-study/5-steps-to-install.png" class="case-study-image large-image" />
+          <figcaption>Fig. 29: Five Steps to Installing Dendro</figcaption>
         </figure>
-        <br /> -->
+        <br />
         <p>
           Dendro is an npm package, which means the first step is to download and install it just like any other npm
-          package. Make sure to use the -g flag so that the command is available throughout your local environment
+          package. Make sure to use the <code class="command">-g</code> flag so that the command is available throughout your local environment.
         </p>
         <br />
         <p>
@@ -903,32 +902,29 @@
         </p>
         <br />
         <p>
-          The third step is to configure Dendro for that server using the dendro configure command. This step results in
+          The third step is to configure Dendro for that server using the <code class="command">dendro configure</code> command. This step results in
           two configuration files: 1. a file that Vector uses to monitor the selected services on that machine, 2. A
           file that Dendro uses to deploy the pipeline, including AWS credentials and database tables that match the
           selected services for that server.
         </p>
         <br />
-        <!-- TODO: dendro-configure.gif -->
-        <!-- <br />
         <figure>
-          <img src="assets/images/case-study/dendro-configure.gif" class="case-study-image" />
-          <figcaption>Fig. 30: CAPTION</figcaption>
+          <img src="assets/images/case-study/dendro-configure.gif" class="case-study-image demo" />
+          <figcaption>Fig. 30: Dendro Configure</figcaption>
         </figure>
-        <br /> -->
+        <br />
         <p>
-          Dendro now knows which services you want to monitor on your machine. The fourth step is to actually build the
-          pipeline by running the command `dendro deploy`. Again, the pipeline provides a centralized location where all
-          of the monitoring data from our various servers will live.
+          Dendro now knows which services the user wants to monitor on their machine. The fourth step is to actually build the
+          pipeline by running the command <code class="command">dendro deploy</code>. Again, the pipeline provides a centralized location where all
+          of the monitoring data from the user's various servers will live.
         </p>
         <br />
-        <!-- TODO: dendro-deploy.gif -->
-        <!-- <br />
+        <br />
         <figure>
-          <img src="assets/images/case-study/dendro-deploy.gif" class="case-study-image" />
-          <figcaption>Fig. 31: CAPTION</figcaption>
+          <img src="assets/images/case-study/dendro-deploy.gif" class="case-study-image demo" />
+          <figcaption>Fig. 31: Dendro Deploy</figcaption>
         </figure>
-        <br /> -->
+        <br />
         <p>
           Running the dendro deploy command sets up the AWS infrastructure, including the IAM role, the Kinesis Firehose
           stream, the S3 bucket, the Lambda function, and the Timestream database with the correct tables.
@@ -940,51 +936,49 @@
           specific failure conditions.
         </p>
         <br />
-        <!-- TODO: dendro-teardown.gif -->
-        <!-- <br />
+        <br />
         <figure>
-          <img src="assets/images/case-study/dendro-teardown.gif" class="case-study-image" />
-          <figcaption>Fig. 32: CAPTION</figcaption>
+          <img src="assets/images/case-study/dendro-teardown.gif" class="case-study-image demo" />
+          <figcaption>Fig. 32: Dendro Teardown</figcaption>
         </figure>
-        <br /> -->
+        <br />
         <p>
-          We can run the teardown command to remove all deployed AWS services. It will ask us to confirm that the user
+          The user can run the teardown command to remove all deployed AWS services. It will ask them to confirm that the user
           wants to delete the resources. The teardown command is for ease of use and to ensure that there are no extra
           AWS services floating around in the user’s account.
         </p>
         <br />
-        <!-- TODO: vector-run.gif -->
-        <!-- <br />
+        <br />
         <figure>
-          <img src="assets/images/case-study/vector-run.gif" class="case-study-image" />
-          <figcaption>Fig. 33: CAPTION</figcaption>
+          <img src="assets/images/case-study/vector-run.gif" class="case-study-image demo" />
+          <figcaption>Fig. 33: Running Vector</figcaption>
         </figure>
-        <br /> -->
+        <br />
         <p>
-          Now that the pipeline is set up, we’re ready to send data to it. We’ll do this by running vector.
+          Now that the pipeline is set up, the user is ready to send data to it. They do this by running vector.
         </p>
         <br />
         <p>
           <!-- TODO: stylize code -->
-          We start Vector by running the command <code>vector --config vector-config.toml</code>, passing in the
-          configuration file generated from the configure command. This file ensures that we’re monitoring the
+          The user starts Vector by running the command <code class="command">vector --config vector-config.toml</code>, passing in the
+          configuration file generated from the configure command. This file ensures that they are monitoring the
           appropriate services on this machine. Vector is now streaming logs and metrics to the AWS pipeline.
         </p>
         <br />
 
         <h3>6.2 Using Dendro</h3>
-        <!-- TODO: frontend-home.gif -->
-        <!-- <br />
-        <figure>
-          <img src="assets/images/case-study/frontend-home.gif" class="case-study-image" />
-          <figcaption>Fig. 34: CAPTION</figcaption>
-        </figure>
-        <br /> -->
+        
+        <br />
         <p>
-          Now that we have data passing through to the database, we can visit the frontend, which is accessed by running
+          Now that the user has data passing through to the database, they can visit the frontend, which is accessed by running
           the command dendro start:server from any computer that has dendro installed and configured, and then visiting
           localhost port 3000 on a browser.
         </p>
+        <br />
+        <figure>
+          <img src="assets/images/case-study/frontend-home.gif" class="case-study-image demo" />
+          <figcaption>Fig. 34: Frontend Home</figcaption>
+        </figure>
         <br />
         <p>
           There are three pages listed on the sidebar. A homepage, a charts page, and a query page. On the homepage, the
@@ -992,30 +986,25 @@
           the database.
         </p>
         <br />
-        <!-- TODO: frontend-charts.gif -->
-        <!-- <br />
+        <br />
         <figure>
-          <img src="assets/images/case-study/frontend-charts.gif" class="case-study-image" />
-          <figcaption>Fig. 35: CAPTION</figcaption>
+          <img src="assets/images/case-study/frontend-charts.gif" class="case-study-image demo" />
+          <figcaption>Fig. 35: Frontend Charts</figcaption>
         </figure>
-        <br /> -->
+        <br />
         <p>
-          <!-- TODO: link -->
-          On the charts page, we see real-time data for the services currently being monitored. This includes key
-          metrics from the RED method,
-          [https://grafana.com/blog/2018/08/02/the-red-method-how-to-instrument-your-services/]
-          such as the rate of requests, the number of errors among those requests, and the duration of the requests.
+          On the charts page, the user sees real-time data for the services currently being monitored. This includes key
+          metrics from the <a href="https://grafana.com/blog/2018/08/02/the-red-method-how-to-instrument-your-services/" target="_blank">RED method</a>, such as the rate of requests, the number of errors among those requests, and the duration of the requests.
         </p>
         <br />
-        <!-- TODO: frontend-query.gif -->
-        <!-- <br />
+        <br />
         <figure>
-          <img src="assets/images/case-study/frontend-query.gif" class="case-study-image" />
-          <figcaption>Fig. 36: CAPTION</figcaption>
+          <img src="assets/images/case-study/frontend-query.gif" class="case-study-image demo" />
+          <figcaption>Fig. 36: Frontend Query</figcaption>
         </figure>
-        <br /> -->
+        <br />
         <p>
-          The query page enables us to query the Timestream database. In this example, we query the nginx access logs
+          The query page enables the user to query the Timestream database. In this example, they query the nginx access logs
           for all 500 errors that occurred in the last 2 hours. A user can also export the data and begin to drill down
           to find the source of the problem.
         </p>
