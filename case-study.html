@@ -115,7 +115,10 @@
         <p>
           Their system itself has proven to be resilient so far, thanks to its small size and simplicity.
         </p>
-        <img src="assets/images/case-study/naptime-early.png" class="case-study-image" />
+        <figure>
+          <img src="assets/images/case-study/naptime-early.png" class="case-study-image" />
+          <figcaption>Fig. 1: NapTime's beta architecture</figcaption>
+        </figure>
         <br />
         <p>
           NapTime built a simple three-tier system in order to avoid premature optimization, with their web server and
@@ -136,14 +139,22 @@
           trying to access their homepages but they’re just receiving a 500-level error.
         </p>
         <br />
-        <img src="assets/images/case-study/debugging-small.gif" class="case-study-image" />
+        <figure>
+          <img src="assets/images/case-study/debugging-small.gif" class="case-study-image" />
+          <figcaption>Fig. 2: How can NapTime determine what's wrong?</figcaption>
+        </figure>
+        <br />
         <p>
           The engineers decide on three priority debugging steps: ensure that each server in their system is up, ensure
           that each of the services running on those servers is up, and check whether those services are sending and
           receiving requests and responses successfully.
         </p>
         <br />
-        <img src="assets/images/case-study/debugging-steps.gif" class="case-study-image" />
+        <figure>
+          <img src="assets/images/case-study/debugging-steps.gif" class="case-study-image" />
+          <figcaption>Fig. 3: Some potential debugging steps for NapTime's engineers</figcaption>
+        </figure>
+        <br />
         <p>
           First, if they have a list of their static IP addresses, they can use the Unix command line utility `ping` to
           check whether each of the servers is up at all. If the servers are up, it’ll be useful to see their health
@@ -167,7 +178,11 @@
           can provide the answers to these questions.
         </p>
         <br />
-        <img src="assets/images/case-study/logs-historical.png" class="case-study-image" />
+        <figure>
+          <img src="assets/images/case-study/logs-historical.png" class="case-study-image" />
+          <figcaption>Fig. 4: NapTime's servers and services write their historical records to log files</figcaption>
+        </figure>
+        <br />
         <p>
           Let’s say that the NapTime team is curious about what’s going on with their Nginx web server. One of their
           next steps would be to take a look at the access log file in the nginx subdirectory of var/log.
@@ -180,7 +195,11 @@
           errors occurring, exploring the access log of their web server is where NapTime would find evidence of them.
         </p>
         <br />
-        <img src="assets/images/case-study/log-breakdown.png" class="case-study-image" />
+        <figure>
+          <img src="assets/images/case-study/log-breakdown.png" class="case-study-image" />
+          <figcaption>Fig. 5: An example of a single record from a web server's plain-text access log</figcaption>
+        </figure>
+        <br />
         <p>
           The individual log lines NapTime would find would look something like the above diagram. An interested
           engineer can take logs like these and analyze them, either one by one or aggregated, in order to achieve a
@@ -206,7 +225,11 @@
           a new central location.
         </p>
         <br />
-        <img src="assets/images/case-study/naptime-scaled.png" class="case-study-image" />
+        <figure>
+          <img src="assets/images/case-study/naptime-scaled.png" class="case-study-image" />
+          <figcaption>Fig. 6: NapTime's architecture after scaling</figcaption>
+        </figure>
+        <br />
         <p>
           Suddenly NapTime is in charge of 8 nodes instead of 2, scaled out app servers, more unique services, a load
           balancer, and multiple databases. What is debugging like for them now? What if MongoDB suddenly stops
@@ -224,7 +247,11 @@
           software engineering is automating the toil out of processes.
         </p>
         <br />
-        <img src="assets/images/case-study/tail.gif" class="case-study-image" />
+        <figure>
+          <img src="assets/images/case-study/tail.gif" class="case-study-image" />
+          <figcaption>Fig. 7: Running `tail -f` on a server/service's logfile can help you understand what that server/service is doing over time</figcaption>
+        </figure>
+        <br />
         <p>
           On Unix-like systems, a common strategy to gain a quick insight into what’s happening with a service is to run
           the command `tail -f` on the log file to which that service writes. Tail prints the last 10 lines of a given
@@ -281,7 +308,11 @@
         <p>
           Dendro acts as that strategy.
         </p>
-        <img src="assets/images/case-study/single-source.gif" class="case-study-image" />
+        <br />
+        <figure>
+          <img src="assets/images/case-study/single-source.gif" class="case-study-image" />
+          <figcaption>Fig. 8: Dendro provides a single source of historical truth for application state</figcaption>
+        </figure>
         <br />
         <p>
           A team can SSH into each of the nodes in their system, configure and deploy a logging pipeline using Dendro’s
@@ -312,7 +343,6 @@
         </p>
         <br />
 
-
         <!-- Section 2 -->
         <h2 class="h2">2 Overview of Dendro</h2>
         <h3>2.1 How does Dendro help teams?</h3>
@@ -321,7 +351,11 @@
           the example of NapTime after they’ve scaled their architecture.
         </p>
         <br />
-        <img src="assets/images/case-study/dendro-agent.gif" class="case-study-image" />
+        <figure>
+          <img src="assets/images/case-study/dendro-agent.gif" class="case-study-image" />
+          <figcaption>Fig. 9: Dendro's CLI helps you install and configure a collection agent on your nodes</figcaption>
+        </figure>
+        <br />
         <p>
           Dendro includes a collection agent that the team installs on each node in their system. That collection agent
           gathers log and metric data from both the services running on the server, as well as information about the
@@ -339,7 +373,11 @@
           This is an overview of Dendro’s architecture and the infrastructure behind this framework. We’ll dive into it
           in more detail later, but for now let’s stick to the main conceptual pieces.
         </p>
-        <img src="assets/images/case-study/dendro-architecture.gif" class="case-study-image" />
+        <br />
+        <figure>
+          <img src="assets/images/case-study/dendro-architecture.gif" class="case-study-image" />
+          <figcaption>Fig. 10: An overview of Dendro's architecture, split into conceptual components</figcaption>
+        </figure>
         <br />
         <p>
           We’ve already discussed how Dendro helps you set up the automated collection of logs and metrics from your
@@ -378,7 +416,6 @@
         </p>
         <br />
 
-
         <!-- Section 3 -->
         <h2 class="h2">3 Who should use Dendro?</h2>
         <p>
@@ -386,7 +423,11 @@
           build.
         </p>
         <br />
-        <img src="assets/images/case-study/buy-operate-build.gif" class="case-study-image" />
+        <figure>
+          <img src="assets/images/case-study/buy-operate-build.gif" class="case-study-image" />
+          <figcaption>Fig. 11: Teams generally choose between buying, personally operating, or building their own monitoring solution</figcaption>
+        </figure>
+        <br />
         <p>
           If a small company like NapTime was to <span class="bold">buy</span> a solution, they might look at working
           with a SaaS vendor like Datadog. Outsourcing your monitoring to a vendor makes the whole process very easy and
@@ -412,7 +453,11 @@
           But what if there were another option? That’s where we think Dendro fits in.
         </p>
         <br />
-        <img src="assets/images/case-study/dendro-comparison.png" class="case-study-image" />
+        <figure>
+          <img src="assets/images/case-study/dendro-comparison.png" class="case-study-image" />
+          <figcaption>Fig. 12: How our team chose to position Dendro in the marketplace of monitoring solutions</figcaption>
+        </figure>
+        <br />
         <p>
           Dendro combines the <span class="bold">ease of deployment</span> and <span class="bold">low maintenance</span>
           of a SaaS solution thanks to its collection agents and fully-serverless pipeline.
@@ -478,7 +523,6 @@
           integration code.
         </p>
         <br />
-        <!-- TODO: dendro vector-install / config quick gif (CC: Angel/Peter) -->
         <h5>A ready-made pipeline</h5>
         <p>
           A low-toil framework should provision and deploy a pre-designed/opinionated logging pipeline for users,
@@ -486,7 +530,11 @@
           functionality.
         </p>
         <br />
-        <img src="assets/images/case-study/api-calls.png" class="case-study-image" />
+        <figure>
+          <img src="assets/images/case-study/api-calls.png" class="case-study-image" />
+          <figcaption>Fig. 13: Dendro's CLI commands abstract away the dozens of API calls to AWS required for setting up a pipeline</figcaption>
+        </figure>
+        <br />
         <h5>Low maintenance</h5>
         <p>
           Provisioning and maintaining servers takes time and can be difficult. And even under close observation, they
@@ -507,7 +555,11 @@
           is indistinguishable from normal relational data that features a timestamp as a field.
         </p>
         <br />
-        <img src="assets/images/case-study/timestream-schema.png" class="case-study-image" />
+        <figure>
+          <img src="assets/images/case-study/timestream-schema.png" class="case-study-image" />
+          <figcaption>Fig. 14: An example schema for Timestream, AWS's time-series database</figcaption>
+        </figure>
+        <br />
         <p>
           With that in mind, log data is perfectly suited to being treated as time-series data. For example, time series
           data could measure the average response time of a web server over the course of a week. The distinction
@@ -522,7 +574,6 @@
           possible to perform.
         </p>
         <br />
-        <!-- TODO: some sort of time-series query image -->
         <p>
           Mapping logs from plain-text log lines to time-series records in a database unlocks a large range of
           time-specific querying functionality that helps Dendro improve your ability to extract insights from your logs
@@ -550,7 +601,11 @@
           What logs do they check? Without log aggregation and centralization, NapTime would have to check each node
           individually.
         </p>
-        <img src="assets/images/case-study/connections.png" class="case-study-image" />
+        <br />
+        <figure>
+          <img src="assets/images/case-study/connections.png" class="case-study-image" />
+          <figcaption>Fig. 15: How can engineers debug systems with exponentially growing numbers of nodes/connections?</figcaption>
+        </figure>
         <br />
         <p>
           Dendro aims to decrease the time between an outage occurring and the time it takes for you to resolve it. We
@@ -563,7 +618,11 @@
           so by monitoring incoming logs and metrics to notify users of failures, thereby decreasing the time it takes
           for your team to become aware of a problem.
         </p>
-        <img src="assets/images/case-study/proactive.png" class="case-study-image" />
+        <br />
+        <figure>
+          <img src="assets/images/case-study/proactive.png" class="case-study-image" />
+          <figcaption>Fig. 16: Dendro helps you be proactive, rather than reactive, in debugging your system</figcaption>
+        </figure>
         <br />
         <p>
           With Dendro, NapTime’s engineer’s no longer need to check 8 different nodes. By aggregating logs into a single
@@ -575,7 +634,13 @@
 
         <!-- Section 5 -->
         <h2 class="h2">5 Dendro's Architecture</h2>
-        <!-- TODO: architecture.png -->
+        <!-- TODO -->
+        <!-- <br />
+        <figure>
+          <img src="assets/images/case-study/architecture.png" class="case-study-image" />
+          <figcaption>Fig. 17: Dendro's architecture</figcaption>
+        </figure>
+        <br /> -->
         <p>
           We’ve seen how Dendro’s architecture is split up into four major conceptual sections. In this next section
           we’re going to more closely examine these pieces as well as the individual components that comprise them.
@@ -583,7 +648,13 @@
         <br />
 
         <h3>5.1 Collection</h3>
-        <!-- TODO: Collection.png -->
+        <!-- TODO -->
+        <!-- <br />
+        <figure>
+          <img src="assets/images/case-study/collection.png" class="case-study-image" />
+          <figcaption>Fig. 18: Dendro's Collection step</figcaption>
+        </figure>
+        <br /> -->
         <p>
           For each service in a user’s distributed app that they want to monitor, they need to set up collection. Dendro
           uses a collection agent called <a href="https://vector.dev/" target="_blank">Vector</a> to gather, transform,
@@ -596,7 +667,12 @@
           further processing.
         </p>
         <br />
-        <!-- TODO: highlighted-log.png -->
+        <!-- TODO -->
+        <!--<figure>
+          <img src="assets/images/case-study/highlighted-log.png" class="case-study-image" />
+          <figcaption>Fig. 19: CAPTION</figcaption>
+        </figure>
+        <br /> -->
         <p>
           Looking at this log, we can see several important pieces of information. The path that was requested, the
           amount of time it took to complete the request, as well as the time the event occurred. Dendro needs to
@@ -613,6 +689,12 @@
         </p>
         <br />
         <!-- TODO: vector-config.png -->
+        <!-- <br />
+        <figure>
+          <img src="assets/images/case-study/vector-config.png" class="case-study-image" />
+          <figcaption>Fig. 20: CAPTION</figcaption>
+        </figure>
+        <br /> -->
         <p>
           Writing out all of this information is extremely laborious. A fully fleshed out configuration file is over 400
           lines long, and this caused our team plenty of headaches when we were first manually typing it out.
@@ -624,7 +706,13 @@
           Dendro is able to dynamically generate the long config file Vector requires without manual effort.
         </p>
         <br />
-        <!-- dendro-config.gif -->
+        <!-- TODO: dendro-config.gif -->
+        <!-- <br />
+        <figure>
+          <img src="assets/images/case-study/dendro-config.gif" class="case-study-image" />
+          <figcaption>Fig. 21: CAPTION</figcaption>
+        </figure>
+        <br /> -->
         <p>
           Once Vector is properly configured, it gathers logs and metrics, transforms them from plaintext to JSON, and
           then sends them off to the cloud pipeline. Once in the pipeline, the first stop is AWS Kinesis Data Firehose.
@@ -633,6 +721,12 @@
 
         <h3>5.2 Transform</h3>
         <!-- TODO: transform.png -->
+        <!-- <br />
+        <figure>
+          <img src="assets/images/case-study/transform.gif" class="case-study-image" />
+          <figcaption>Fig. 22: CAPTION</figcaption>
+        </figure>
+        <br /> -->
         <p>
           Kinesis Data Firehose is a fully-managed, real-time streaming platform that captures, transforms & delivers
           data. It ingests new data up to a predefined threshold (Dendro defaults to use one minute/1MB) in order to
@@ -641,6 +735,12 @@
         </p>
         <br />
         <!-- TODO: connections-bad.png -->
+        <!-- <br />
+        <figure>
+          <img src="assets/images/case-study/connections-bad.png" class="case-study-image" />
+          <figcaption>Fig. 22: CAPTION</figcaption>
+        </figure>
+        <br /> -->
         <p>
           In today’s distributed world, data produced by one service is often consumed by multiple other services.
           Connecting all of these is difficult, time-consuming and hyper-specific. Dendro uses Kinesis to help decouple
@@ -649,6 +749,12 @@
         </p>
         <br />
         <!-- TODO: connections-good.png -->
+        <!-- <br />
+        <figure>
+          <img src="assets/images/case-study/connections-good.png" class="case-study-image" />
+          <figcaption>Fig. 23: CAPTION</figcaption>
+        </figure>
+        <br /> -->
         <p>
           Once the data buffering threshold is met, data is pointed to the static HTTP Endpoint of an S3 bucket. Data is
           temporarily staged in the bucket for two main reasons: to assist with retries of failed deliveries and persist
@@ -664,6 +770,12 @@
         </p>
         <br />
         <!-- TODO: Lambda-go.png -->
+        <!-- <br />
+        <figure>
+          <img src="assets/images/case-study/lambda-go.png" class="case-study-image" />
+          <figcaption>Fig. 24: CAPTION</figcaption>
+        </figure>
+        <br /> -->
         <p>
           The Lambda function serves to transform, sort, and load data into Timestream, our selected time-series
           database. The team initially wrote the Lambda function in JavaScript, but later rewrote it in Golang because
@@ -693,6 +805,12 @@
         </p>
         <br />
         <!-- TODO: timeseries-query.png -->
+        <!-- <br />
+        <figure>
+          <img src="assets/images/case-study/timeseries-query.png" class="case-study-image" />
+          <figcaption>Fig. 25: CAPTION</figcaption>
+        </figure>
+        <br /> -->
         <p>
           The power of a time-series database can be summed up by the idea that changes in data over time are tracked as
           INSERTS, rather than as UPDATES. There’s no rewriting of existing data when you’re thinking in terms of
@@ -704,6 +822,12 @@
 
         <h3>5.4 Monitor</h3>
         <!-- TODO: monitor.png -->
+        <!-- <br />
+        <figure>
+          <img src="assets/images/case-study/monitor.png" class="case-study-image" />
+          <figcaption>Fig. 26: CAPTION</figcaption>
+        </figure>
+        <br /> -->
         <p>
           With the aforementioned infrastructure in place, the team was able to build a monitoring and alerting system
           to harness the incoming logs. This enables some useful functionality, like the ability to email our users as
@@ -723,7 +847,13 @@
           Finally, we arrive at Dendro’s custom-built data exploration and dashboarding server.
         </p>
         <br />
-        <!-- dashboard-charts.png -->
+        <!-- TODO: dashboard-charts.png -->
+        <!-- <br />
+        <figure>
+          <img src="assets/images/case-study/dashboard-charts.png" class="case-study-image" />
+          <figcaption>Fig. 27: CAPTION</figcaption>
+        </figure>
+        <br /> -->
         <p>
           We built a dashboarding hub to help users visualize and query their data in near real-time as it's being
           produced. This dashboard is available for view on any machine in the user’s distributed system that has Dendro
@@ -733,6 +863,12 @@
         </p>
         <br />
         <!-- TODO: dashboard-query.png -->
+        <!-- <br />
+        <figure>
+          <img src="assets/images/case-study/dashboard-query.png" class="case-study-image" />
+          <figcaption>Fig. 28: CAPTION</figcaption>
+        </figure>
+        <br /> -->
         <p>
           Because accessing AWS functionality through their actual website GUI can take time and effort, we also built
           in the ability to query Timestream directly from the dashboarding hub, exploring any returned rows for
@@ -750,6 +886,12 @@
         <h2 class="h2">6 Installing and Using Dendro</h2>
         <h3>6.1 Installing Dendro</h3>
         <!-- TODO: 5-steps-to-install.png -->
+        <!-- <br />
+        <figure>
+          <img src="assets/images/case-study/5-steps-to-install.png" class="case-study-image" />
+          <figcaption>Fig. 29: CAPTION</figcaption>
+        </figure>
+        <br /> -->
         <p>
           Dendro is an npm package, which means the first step is to download and install it just like any other npm
           package. Make sure to use the -g flag so that the command is available throughout your local environment
@@ -768,6 +910,12 @@
         </p>
         <br />
         <!-- TODO: dendro-configure.gif -->
+        <!-- <br />
+        <figure>
+          <img src="assets/images/case-study/dendro-configure.gif" class="case-study-image" />
+          <figcaption>Fig. 30: CAPTION</figcaption>
+        </figure>
+        <br /> -->
         <p>
           Dendro now knows which services you want to monitor on your machine. The fourth step is to actually build the
           pipeline by running the command `dendro deploy`. Again, the pipeline provides a centralized location where all
@@ -775,6 +923,12 @@
         </p>
         <br />
         <!-- TODO: dendro-deploy.gif -->
+        <!-- <br />
+        <figure>
+          <img src="assets/images/case-study/dendro-deploy.gif" class="case-study-image" />
+          <figcaption>Fig. 31: CAPTION</figcaption>
+        </figure>
+        <br /> -->
         <p>
           Running the dendro deploy command sets up the AWS infrastructure, including the IAM role, the Kinesis Firehose
           stream, the S3 bucket, the Lambda function, and the Timestream database with the correct tables.
@@ -786,7 +940,13 @@
           specific failure conditions.
         </p>
         <br />
-        <!-- dendro-teardown.gif -->
+        <!-- TODO: dendro-teardown.gif -->
+        <!-- <br />
+        <figure>
+          <img src="assets/images/case-study/dendro-teardown.gif" class="case-study-image" />
+          <figcaption>Fig. 32: CAPTION</figcaption>
+        </figure>
+        <br /> -->
         <p>
           We can run the teardown command to remove all deployed AWS services. It will ask us to confirm that the user
           wants to delete the resources. The teardown command is for ease of use and to ensure that there are no extra
@@ -794,6 +954,12 @@
         </p>
         <br />
         <!-- TODO: vector-run.gif -->
+        <!-- <br />
+        <figure>
+          <img src="assets/images/case-study/vector-run.gif" class="case-study-image" />
+          <figcaption>Fig. 33: CAPTION</figcaption>
+        </figure>
+        <br /> -->
         <p>
           Now that the pipeline is set up, we’re ready to send data to it. We’ll do this by running vector.
         </p>
@@ -808,6 +974,12 @@
 
         <h3>6.2 Using Dendro</h3>
         <!-- TODO: frontend-home.gif -->
+        <!-- <br />
+        <figure>
+          <img src="assets/images/case-study/frontend-home.gif" class="case-study-image" />
+          <figcaption>Fig. 34: CAPTION</figcaption>
+        </figure>
+        <br /> -->
         <p>
           Now that we have data passing through to the database, we can visit the frontend, which is accessed by running
           the command dendro start:server from any computer that has dendro installed and configured, and then visiting
@@ -820,7 +992,13 @@
           the database.
         </p>
         <br />
-        <!-- frontend-charts.gif -->
+        <!-- TODO: frontend-charts.gif -->
+        <!-- <br />
+        <figure>
+          <img src="assets/images/case-study/frontend-charts.gif" class="case-study-image" />
+          <figcaption>Fig. 35: CAPTION</figcaption>
+        </figure>
+        <br /> -->
         <p>
           <!-- TODO: link -->
           On the charts page, we see real-time data for the services currently being monitored. This includes key
@@ -830,6 +1008,12 @@
         </p>
         <br />
         <!-- TODO: frontend-query.gif -->
+        <!-- <br />
+        <figure>
+          <img src="assets/images/case-study/frontend-query.gif" class="case-study-image" />
+          <figcaption>Fig. 36: CAPTION</figcaption>
+        </figure>
+        <br /> -->
         <p>
           The query page enables us to query the Timestream database. In this example, we query the nginx access logs
           for all 500 errors that occurred in the last 2 hours. A user can also export the data and begin to drill down
@@ -858,7 +1042,11 @@
           fires off 37 API calls, while <code>teardown</code> executes 25.
         </p>
         <br />
-        <img src="assets/images/case-study/api-calls.png" class="case-study-image" />
+        <figure>
+          <img src="assets/images/case-study/api-calls.png" class="case-study-image" />
+          <figcaption>Fig. 37: The services spun up/destroyed by Dendro's <code>deploy</code> and <code>teardown</code> commands</figcaption>
+        </figure>
+        <br />
         <p>
           For example, certain services couldn’t be spun up before the requisite IAM permissions were created or
           attached, or Timestream tables couldn’t be created until the database was successfully created.
@@ -869,14 +1057,22 @@
           the first request, wait to receive the response, and only then send the second request.
         </p>
         <br />
-        <img src="assets/images/case-study/optimistic-response.png" class="case-study-image" />
+        <figure>
+          <img src="assets/images/case-study/optimistic-response.png" class="case-study-image" />
+          <figcaption>Fig. 38: Expected behavior when a second async request is dependent on a successful response to a first</figcaption>
+        </figure>
+        <br />
         <p>
           When using the AWS SDK, AWS returns an AWS Response object that doesn’t necessarily indicate that the service
           has been created! So when you predicate the next step on the receipt of the Response object and send the
           subsequent request, it often fails.
         </p>
         <br />
-        <img src="assets/images/case-study/long-polling.gif" class="case-study-image" />
+        <figure>
+          <img src="assets/images/case-study/long-polling.gif" class="case-study-image" />
+          <figcaption>Fig. 39: Our solution to premature responses: implementing long-polling (with exponential backoff)</figcaption>
+        </figure>
+        <br />
         <p>
           To overcome this, we implemented long polling AWS with exponential back off. Dendro asks Amazon repeatedly
           whether the operation has been completed, increasing the time between failed polls at an exponential rate in
@@ -893,7 +1089,11 @@
           Firehose writing to the S3 bucket. We have already discussed how both work but to reiterate:
         </p>
         <br />
-        <img src="assets/images/case-study/apache-log.png" class="case-study-image" />
+        <figure>
+          <img src="assets/images/case-study/apache-log.png" class="case-study-image" />
+          <figcaption>Fig. 40: Sample plaintext log line from a web server</figcaption>
+        </figure>
+        <br />
         <p>
           Logs are typically emitted as plain-text. During the log collection process, Dendro takes some steps to
           prepare it for insertion into the database. It first has to parse the record using a regex pattern written
@@ -920,7 +1120,11 @@
           is missing a few tokens (brackets, commas, etc.) making it unparsable/invalid JSON.
         </p>
         <br />
-        <img src="assets/images/case-study/binary-to-json.gif" class="case-study-image" />
+        <figure>
+          <img src="assets/images/case-study/binary-to-json.gif" class="case-study-image" />
+          <figcaption>Fig. 41: Using regex to parse a string back to JSON</figcaption>
+        </figure>
+        <br />
         <p>
           We can use regex to insert those missing tokens and then successfully parse the octet-stream back into JSON.
           Once the record is parsable, Dendro checks that the <code>type</code> key that was injected during the first
@@ -988,7 +1192,6 @@
           </li>
         </ul>
 
-
         <!-- Section 9 -->
         <h2 class="h2">9 References</h2>
         <!-- TODO -->
@@ -996,7 +1199,6 @@
         <!-- Section 10 -->
         <h2 class="h2">10 Team</h2>
         <!-- TODO -->
-
 
         <!-- <h2>2 Secrets</h2>
         <br>
