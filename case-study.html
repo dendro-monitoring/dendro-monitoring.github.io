@@ -249,7 +249,8 @@
         <br />
         <figure>
           <img src="assets/images/case-study/tail.gif" class="case-study-image" />
-          <figcaption>Fig. 7: Running `tail -f` on a server/service's logfile can help you understand what that server/service is doing over time</figcaption>
+          <figcaption>Fig. 7: Running `tail -f` on a server/service's logfile can help you understand what that
+            server/service is doing over time</figcaption>
         </figure>
         <br />
         <p>
@@ -425,7 +426,8 @@
         <br />
         <figure>
           <img src="assets/images/case-study/buy-operate-build.gif" class="case-study-image" />
-          <figcaption>Fig. 11: Teams generally choose between buying, personally operating, or building their own monitoring solution</figcaption>
+          <figcaption>Fig. 11: Teams generally choose between buying, personally operating, or building their own
+            monitoring solution</figcaption>
         </figure>
         <br />
         <p>
@@ -455,7 +457,8 @@
         <br />
         <figure>
           <img src="assets/images/case-study/dendro-comparison.png" class="case-study-image" />
-          <figcaption>Fig. 12: How our team chose to position Dendro in the marketplace of monitoring solutions</figcaption>
+          <figcaption>Fig. 12: How our team chose to position Dendro in the marketplace of monitoring solutions
+          </figcaption>
         </figure>
         <br />
         <p>
@@ -532,7 +535,8 @@
         <br />
         <figure>
           <img src="assets/images/case-study/api-calls.png" class="case-study-image" />
-          <figcaption>Fig. 13: Dendro's CLI commands abstract away the dozens of API calls to AWS required for setting up a pipeline</figcaption>
+          <figcaption>Fig. 13: Dendro's CLI commands abstract away the dozens of API calls to AWS required for setting
+            up a pipeline</figcaption>
         </figure>
         <br />
         <h5>Low maintenance</h5>
@@ -604,7 +608,8 @@
         <br />
         <figure>
           <img src="assets/images/case-study/connections.png" class="case-study-image" />
-          <figcaption>Fig. 15: How can engineers debug systems with exponentially growing numbers of nodes/connections?</figcaption>
+          <figcaption>Fig. 15: How can engineers debug systems with exponentially growing numbers of nodes/connections?
+          </figcaption>
         </figure>
         <br />
         <p>
@@ -621,7 +626,8 @@
         <br />
         <figure>
           <img src="assets/images/case-study/proactive.png" class="case-study-image" />
-          <figcaption>Fig. 16: Dendro helps you be proactive, rather than reactive, in debugging your system</figcaption>
+          <figcaption>Fig. 16: Dendro helps you be proactive, rather than reactive, in debugging your system
+          </figcaption>
         </figure>
         <br />
         <p>
@@ -880,7 +886,8 @@
         <br />
         <p>
           Dendro is an npm package, which means the first step is to download and install it just like any other npm
-          package. Make sure to use the <code class="command">-g</code> flag so that the command is available throughout your local environment.
+          package. Make sure to use the <code class="command">-g</code> flag so that the command is available throughout
+          your local environment.
         </p>
         <br />
         <p>
@@ -889,7 +896,8 @@
         </p>
         <br />
         <p>
-          The third step is to configure Dendro for that server using the <code class="command">dendro configure</code> command. This step results in
+          The third step is to configure Dendro for that server using the <code class="command">dendro configure</code>
+          command. This step results in
           two configuration files: 1. a file that Vector uses to monitor the selected services on that machine, 2. A
           file that Dendro uses to deploy the pipeline, including AWS credentials and database tables that match the
           selected services for that server.
@@ -901,8 +909,10 @@
         </figure>
         <br />
         <p>
-          Dendro now knows which services the user wants to monitor on their machine. The fourth step is to actually build the
-          pipeline by running the command <code class="command">dendro deploy</code>. Again, the pipeline provides a centralized location where all
+          Dendro now knows which services the user wants to monitor on their machine. The fourth step is to actually
+          build the
+          pipeline by running the command <code class="command">dendro deploy</code>. Again, the pipeline provides a
+          centralized location where all
           of the monitoring data from the user's various servers will live.
         </p>
         <br />
@@ -930,7 +940,8 @@
         </figure>
         <br />
         <p>
-          The user can run the teardown command to remove all deployed AWS services. It will ask them to confirm that the user
+          The user can run the teardown command to remove all deployed AWS services. It will ask them to confirm that
+          the user
           wants to delete the resources. The teardown command is for ease of use and to ensure that there are no extra
           AWS services floating around in the user’s account.
         </p>
@@ -947,17 +958,19 @@
         <br />
         <p>
           <!-- TODO: stylize code -->
-          The user starts Vector by running the command <code class="command">vector --config vector-config.toml</code>, passing in the
+          The user starts Vector by running the command <code class="command">vector --config vector-config.toml</code>,
+          passing in the
           configuration file generated from the configure command. This file ensures that they are monitoring the
           appropriate services on this machine. Vector is now streaming logs and metrics to the AWS pipeline.
         </p>
         <br />
 
         <h3>6.2 Using Dendro</h3>
-        
+
         <br />
         <p>
-          Now that the user has data passing through to the database, they can visit the frontend, which is accessed by running
+          Now that the user has data passing through to the database, they can visit the frontend, which is accessed by
+          running
           the command dendro start:server from any computer that has dendro installed and configured, and then visiting
           localhost port 3000 on a browser.
         </p>
@@ -981,7 +994,9 @@
         <br />
         <p>
           On the charts page, the user sees real-time data for the services currently being monitored. This includes key
-          metrics from the <a href="https://grafana.com/blog/2018/08/02/the-red-method-how-to-instrument-your-services/" target="_blank">RED method</a>, such as the rate of requests, the number of errors among those requests, and the duration of the requests.
+          metrics from the <a href="https://grafana.com/blog/2018/08/02/the-red-method-how-to-instrument-your-services/"
+            target="_blank">RED method</a>, such as the rate of requests, the number of errors among those requests, and
+          the duration of the requests.
         </p>
         <br />
         <br />
@@ -991,7 +1006,8 @@
         </figure>
         <br />
         <p>
-          The query page enables the user to query the Timestream database. In this example, they query the nginx access logs
+          The query page enables the user to query the Timestream database. In this example, they query the nginx access
+          logs
           for all 500 errors that occurred in the last 2 hours. A user can also export the data and begin to drill down
           to find the source of the problem.
         </p>
@@ -1020,7 +1036,8 @@
         <br />
         <figure>
           <img src="assets/images/case-study/api-calls.png" class="case-study-image" />
-          <figcaption>Fig. 37: The services spun up/destroyed by Dendro's <code>deploy</code> and <code>teardown</code> commands</figcaption>
+          <figcaption>Fig. 37: The services spun up/destroyed by Dendro's <code>deploy</code> and <code>teardown</code>
+            commands</figcaption>
         </figure>
         <br />
         <p>
@@ -1035,7 +1052,8 @@
         <br />
         <figure>
           <img src="assets/images/case-study/optimistic-response.png" class="case-study-image" />
-          <figcaption>Fig. 38: Expected behavior when a second async request is dependent on a successful response to a first</figcaption>
+          <figcaption>Fig. 38: Expected behavior when a second async request is dependent on a successful response to a
+            first</figcaption>
         </figure>
         <br />
         <p>
@@ -1046,7 +1064,8 @@
         <br />
         <figure>
           <img src="assets/images/case-study/long-polling.gif" class="case-study-image" />
-          <figcaption>Fig. 39: Our solution to premature responses: implementing long-polling (with exponential backoff)</figcaption>
+          <figcaption>Fig. 39: Our solution to premature responses: implementing long-polling (with exponential backoff)
+          </figcaption>
         </figure>
         <br />
         <p>
@@ -1173,7 +1192,146 @@
         <!-- TODO -->
 
         <!-- Section 10 -->
-        <h2 class="h2">10 Team</h2>
+        <h2>10 Team</h2>
+        <br>
+        <br>
+        <div class="section team-section">
+          <div class="container">
+            <div data-duration-in="300" data-duration-out="100" class="tabs w-tabs">
+              <div data-w-id="8ce4324a-ed8e-4436-9964-0cfbaf67c64a" style="
+                    transform: translate3d(0px, 55px, 0px) scale3d(1, 1, 1)
+                      rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+                    transform-style: preserve-3d;
+                    opacity: 0;
+                  " class="tabs-content w-tab-content">
+                <div>
+                  <div class="team-grid">
+                    <div class="team-member-wrap">
+                      <img src="assets/images/team/andrew.jpg" loading="lazy" alt="" />
+                      <div class="team-member-info">
+                        <div class="team-member-name">Andi Crotwell</div>
+                        <div class="team-member-location">Anaheim, CA</div>
+                      </div>
+                      <ul class="team-member-icons">
+                        <li>
+                          <a href="mailto:awcrotwell@gmail.com" target="_blank">
+                            <span class="team-member-icon">
+                              <i class="fas fa-envelope"></i>
+                            </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="https://awcrotwell.com" target="_blank">
+                            <span class="team-member-icon">
+                              <i class="fas fa-globe"></i>
+                            </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="https://linkedin.com/in/awcrotwell" target="_blank">
+                            <span class="team-member-icon">
+                              <i class="fab fa-linkedin"></i>
+                            </span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="team-member-wrap">
+                      <img src="assets/images/team/pete.jpeg" loading="lazy" alt="">
+                      <div class="team-member-info">
+                        <div class="team-member-name">Peter D'Elia</div>
+                        <div class="team-member-location">Charlottesville, VA</div>
+                      </div>
+                      <ul class="team-member-icons">
+                        <li>
+                          <a href="mailto:danmarino1014@gmail.com" target="_blank">
+                            <span class="team-member-icon">
+                              <i class="fas fa-envelope"></i>
+                            </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="https://itsdanmarino.com" target="_blank">
+                            <span class="team-member-icon">
+                              <i class="fas fa-globe"></i>
+                            </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="https://linkedin.com/in/daniel-marino-software-engineer" target="_blank">
+                            <span class="team-member-icon">
+                              <i class="fab fa-linkedin"></i>
+                            </span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="team-member-wrap">
+                      <img src="assets/images/team/nick.jpeg" loading="lazy" alt="">
+                      <div class="team-member-info">
+                        <div class="team-member-name">Nicholas LiCalzi</div>
+                        <div class="team-member-location">Brooklyn, NY</div>
+                      </div>
+                      <ul class="team-member-icons">
+                        <li>
+                          <a href="mailto:nicholas.licalzi@gmail.com" target="_blank">
+                            <span class="team-member-icon">
+                              <i class="fas fa-envelope"></i>
+                            </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="https://nlicalzi.com" target="_blank">
+                            <span class="team-member-icon">
+                              <i class="fas fa-globe"></i>
+                            </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="https://linkedin.com/in/nicholaslicalzi" target="_blank">
+                            <span class="team-member-icon">
+                              <i class="fab fa-linkedin"></i>
+                            </span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="team-member-wrap">
+                      <img src="assets/images/team/angel.jpeg" loading="lazy" alt="">
+                      <div class="team-member-info">
+                        <div class="team-member-name">Angel Ruiz-Bates</div>
+                        <div class="team-member-location">Tucson, AZ</div>
+                      </div>
+                      <ul class="team-member-icons">
+                        <li>
+                          <a href="mailto:angeljrbt@gmail.com" target="_blank">
+                            <span class="team-member-icon">
+                              <i class="fas fa-envelope"></i>
+                            </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="https://angelruizbates.com/" target="_blank">
+                            <span class="team-member-icon">
+                              <i class="fas fa-globe"></i>
+                            </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="https://www.linkedin.com/in/angel-ruiz-bates-1b68a2142/" target="_blank">
+                            <span class="team-member-icon">
+                              <i class="fab fa-linkedin"></i>
+                            </span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <!-- TODO -->
 
         <!-- <h2>2 Secrets</h2>
